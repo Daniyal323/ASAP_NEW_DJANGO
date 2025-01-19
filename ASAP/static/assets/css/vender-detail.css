@@ -1,0 +1,32 @@
+.vendor-cover {
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+  
+  .vendor-info {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .card img {
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  @media (max-width: 768px) {
+    .vendor-cover {
+      height: 200px;
+    }
+  
+    .vendor-info {
+      padding: 15px;
+    }
+  
+    .card img {
+      height: 150px;
+    }
+  }
+  

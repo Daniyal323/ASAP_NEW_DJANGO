@@ -1,0 +1,66 @@
+{% load static %}
+<!-- {%  static 'assets/css/styles.css'  %}
+{%  static 'assets/scripts/script.js'  %} -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        ASAP SERVICE | REGISTER
+    </title>
+    <link rel="stylesheet" href="{%  static 'assets/css/styles.css'  %}">
+</head>
+<body>
+    <div class="container">
+        <div class="left-side">
+            <div class="signup-container">
+                {% if forms.errors %}
+                <div class="alert alert-danger">
+                    <p>{{form.errors}}</p>
+                </div>
+                {% endif %}
+                <h2>Signup</h2>
+                <form id="signup-form" method="POST">
+                    {% csrf_token %}
+                    <div class="input-group">
+                        {{form.username}}
+                    </div>
+                    <div class="input-group">
+                        {{form.email}}
+                    </div>
+                    <div class="input-group">
+                        {{form.password1}}
+                    </div>
+                    <div class="input-group">
+                        {{form.password2}}
+                    </div>
+                    <!--<div class="input-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="confirm-password">Confirm Password</label>
+                        <input type="password" id="confirm-password" name="confirm-password" required>
+                    </div> -->
+                    <button type="submit">Signup</button>
+                </form>
+                <p>Already have an account? <a href="{% url 'userauths:sign-in' %}">Login here</a></p>
+            </div>
+        </div>
+        <div class="right-side">
+            <div class="quote-container">
+                <span class="quote-icon">“</span>
+                <p class="quote-text">Service at your Door Step</p>
+                <span class="quote-icon">”</span>
+            </div>
+        </div>
+    </div>
+    <!-- <script src="{%  static 'assets/scripts/script.js'  %}"></script> -->
+</body>
+</html>

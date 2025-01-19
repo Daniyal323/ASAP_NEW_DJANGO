@@ -1,0 +1,37 @@
+/* Styles for the sidebar */
+.sidebar {
+    height: 100vh;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.nav-link {
+    font-size: 1.1rem;
+}
+
+.nav-link.active {
+    color: #0d6efd;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.card-text {
+    font-size: 1.2rem;
+}
+
+.table-responsive {
+    margin-top: 20px;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+    .sidebar {
+        display: none;
+    }
+    
+    .container-fluid {
+        padding: 0;
+    }
+}

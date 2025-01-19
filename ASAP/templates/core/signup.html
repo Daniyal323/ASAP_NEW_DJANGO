@@ -1,0 +1,56 @@
+{% load static %}
+<!-- {%  static 'assets/css/styles.css'  %}
+{%  static 'assets/scripts/script.js'  %} -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Booking</title>
+    <link rel="stylesheet" href="{%  static 'assets/css/main.css'  %}"/>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="{%  static 'assets/images/logo.jpg' %}" alt="Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#" class="be-a-seller">Be a Seller</a></li>
+                <li><a href="#"><i class="fas fa-user"></i></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="booking-section">
+        <div class="booking-form">
+            <form action="#">
+                <input type="text" placeholder="Name" required>
+                <input type="email" placeholder="Email" required>
+                <input type="text" placeholder="Contact Details" required>
+                <input type="text" placeholder="Time Slot" required>
+                <button type="submit">Book Now</button>
+            </form>
+        </div>
+        <div class="booking-image">
+            <img src="{%  static 'assets/images/subject.png'  %}" alt="User">
+        </div>  
+    </section>
+
+    <section class="search-section">
+        <input type="text" placeholder="Zip Code">
+        <input type="text" placeholder="City">
+        <input type="text" placeholder="Country">
+        <input type="text" placeholder="Category">
+        <input type="text" placeholder="Category">
+        <button type="submit">Search</button>
+    </section>
+    
+    <!-- <script src="https://kit.fontawesome.com/a076d05399.js"></script> -->
+</body>
+</html>

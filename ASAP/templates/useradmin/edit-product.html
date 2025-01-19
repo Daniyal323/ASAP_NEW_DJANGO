@@ -1,0 +1,207 @@
+{% load static %}
+
+{{ form.media }}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Product</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .sidebar {
+            height: 100vh;
+        }
+
+        .nav-link {
+            color: #333;
+        }
+
+        .nav-link:hover {
+            background-color: #f1f1f1;
+        }
+
+        .card {
+            border: none;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            background-color: #fff;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .form-label {
+            font-weight: bold;
+        }
+
+        .btn-success {
+            background-color: #28a745;
+            border: none;
+        }
+
+        .btn-success:hover {
+            background-color: #218838;
+        }
+
+        .main-content {
+            margin-left: 220px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #ffc107!important;">
+        <div class="container">
+            <a class="navbar-brand" href="#"><img src="{% static 'assets/images/logo.png' %}" alt="Logo" style="width: 150px;"></a>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <nav class="col-md-2 d-md-block sidebar" style="background-color: #f2cc40;">
+                <div class="position-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{% url 'useradmin:dashboard' %}" style="font-weight: bold; color: black; padding: 10px 15px;">
+                                Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'useradmin:products' %}" style="font-weight: bold; color: black; padding: 10px 15px;">
+                                Products
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" style="font-weight: bold; color: black; padding: 10px 15px;">
+                                Orders
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" style="font-weight: bold; color: black; padding: 10px 15px;">
+                                Shop Page
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" style="font-weight: bold; color: black; padding: 10px 15px;">
+                                Reviews
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- Main Content -->
+            <main class="col-md-10 ms-sm-auto col-lg-10 px-md-4 main-content">
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <h4>Edit Product</h4>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST" enctype="multipart/form-data">
+                            {% csrf_token %} 
+                            <div class="row">
+                                <!-- Product Information Section -->
+                                <div class="col-md-8">
+                                    <h5>Basic</h5>
+                                    {% if form.errors %}
+                                    <div class="alert alert-danger">
+                                        <strong>{{form.errors}} </strong>
+                                    </div>
+                                    {% endif %}
+                                    <div class="mb-3">
+                                        <label for="productTitle" class="form-label">Product Title</label>
+                                        <!-- <input type="text" class="form-control" id="productTitle" placeholder="Type here"> -->
+                                         {{form.title}}
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="productDescription" class="form-label">Full Description</label>
+                                        <!-- <textarea class="form-control" id="productDescription" rows="4" placeholder="Type here"></textarea>-->
+                                         {{form.description}}
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4 mb-3">
+                                            <label for="sellingPrice" class="form-label">Selling Price</label>
+                                            <!-- <input type="number" class="form-control" id="sellingPrice" placeholder="$"> -->
+                                             {{form.price}}
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <label for="oldPrice" class="form-label">Old Price</label>
+                                            <!-- <input type="number" class="form-control" id="oldPrice" placeholder="$"> -->
+                                             {{form.old_price}}
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <label for="currency" class="form-label">Currency</label>
+                                            <select id="currency" class="form-select">
+                                                <option>USD</option>
+                                                <!-- <option>EUR</option>
+                                                <option>GBP</option> -->
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <!-- <div class="col-md-6 mb-3">
+                                            <label for="type" class="form-label">Type</label>
+                                             <input type="text" class="form-control" id="type" placeholder="%"> 
+                                             {{form.type}}
+                                        </div> -->
+                                         <div class="col-md-6 mb-3">
+                                            <label for="stock" class="form-label">Stock</label>
+                                            <input type="text" class="form-control" id="stock" placeholder="%">
+                                        </div>
+                                    </div>
+                                    <!--<div class="mb-3">
+                                        <label for="lifeProduct" class="form-label">Life of Product</label>
+                                        <input type="text" class="form-control" id="lifeProduct" placeholder="%">
+                                    </div> -->
+                                    <div class="mb-3">
+                                        <label for="manufactureDate" class="form-label">Manufactured Date</label>
+                                        <input type="date" class="form-control" id="manufactureDate">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="form-label">Digital Service</label>
+                                        <br/>
+                                        {{form.digital}}
+                                        <small class="text-muted ms-2">Check only if this is a digital service</small>
+                                    </div>
+                                </div>
+
+                                <!-- Media Section -->
+                                <div class="col-md-4">
+                                    <h5>Media</h5>
+                                    <div class="mb-3">
+                                        <label class="form-label">Product Image</label>
+                                        <div class="border p-3 text-center">
+                                            <img src="{{product.image.url}}" alt="Image" class="img-fluid mb-2">
+                                            <!-- <input type="file" class="form-control"> -->
+                                             {{form.image}}
+                                        </div>
+                                    </div>
+                                    <h5>Others</h5>
+                                    <div class="mb-3">
+                                        <label for="category" class="form-label">Category</label>
+                                        <!-- <input type="text" class="form-control" id="category" placeholder="Category"> -->
+                                         {{form.category}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-end">
+                                <button type="submit" class="btn btn-success">Publish</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

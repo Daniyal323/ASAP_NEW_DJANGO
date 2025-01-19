@@ -1,0 +1,207 @@
+/* General Styling
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #FFEA9E;
+}
+
+.contact-info {
+    background-color: #000;
+    color: #fff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.contact-info span {
+    margin-left: 20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #FFD836;
+    position: relative;
+}
+
+header .logo img {
+    height: 50px;
+}
+
+header nav {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+header nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+header nav ul li {
+    margin-left: 20px;
+}
+
+header nav ul li a {
+    color: black;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+header nav ul li .be-a-seller {
+    background-color: #004AB8;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: white;
+}
+
+/* Custom CSS adjustments */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #FFEA9E;
+}
+
+.booking-section{
+    background-color: #FFEA9E !important;
+}
+
+/* Adjustments for Booking Form */
+.booking-form {
+    max-width: 100%;
+}
+
+img.logo-img{
+    max-width: 43% !important;
+}
+
+.booking-section img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Responsive Tweaks */
+@media (max-width: 768px) {
+    .booking-section .col-md-6:last-child {
+        display: none;
+    }
+}
+
+/* Services Section Styling */
+.services-section {
+    background-color: #f7f7f7;
+}
+
+.service-item {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #ddd;
+    transition: all 0.3s ease-in-out;
+}
+
+.service-item img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.service-item:hover img {
+    transform: scale(1.05);
+}
+
+.service-item .badge {
+    top: 10px;
+    left: 10px;
+}
+
+.service-item .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+    color: white;
+}
+
+.service-item:hover .overlay {
+    opacity: 1;
+}
+
+.overlay i {
+    font-size: 24px;
+    cursor: pointer;
+    color: white;
+}
+
+.overlay i:hover {
+    color: #ffd700;
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+    .service-item {
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .service-item img {
+        height: 200px; /* Adjust image height for small screens */
+    }
+    .service-item .card-body {
+        padding: 10px;
+    }
+    .overlay i {
+        font-size: 20px;
+    }
+}
+
+/* Search Section Styling */
+.search-section {
+    background-color: #0047ab; /* Dark blue background color */
+}
+
+.search-section .card {
+    background-color: #ffffff; /* White background for the form card */
+    border-radius: 20px; /* Rounded corners */
+    padding: 15px;
+}
+
+.search-section .form-control {
+    border: 2px solid #ffc107; /* Yellow border for input fields */
+    background-color: #f9f9f9; /* Light grey background for input fields */
+    color: #333; /* Text color */
+    height: 45px;
+    padding-left: 15px;
+}
+
+.search-section .form-control::placeholder {
+    color: #888; /* Placeholder text color */
+}
+
+.search-section .btn {
+    background-color: #ffc107; /* Yellow button color */
+    border-color: #ffc107; /* Yellow button border */
+    color: #fff; /* White text color */
+}
+
+.search-section .btn:hover {
+    background-color: #e0a800; /* Darker yellow on hover */
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+    .search-section form {
+        flex-direction: column; /* Stack inputs vertically on smaller screens */
+    }
+}

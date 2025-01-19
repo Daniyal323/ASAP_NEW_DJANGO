@@ -1,0 +1,24 @@
+.carousel-item img {
+    height: 400px;
+    object-fit: contain;
+}
+
+.img-thumbnail {
+    cursor: pointer;
+    width: 100px;
+    height: 100px;
+}
+
+#quantity {
+    width: 80px;
+}
+
+.nav-tabs .nav-link {
+    border: 1px solid #ddd;
+}
+
+.tab-pane {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-top: none;
+}

@@ -1,0 +1,29 @@
+/* Custom styles for category cards */
+.category-card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.category-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.category-card img {
+    max-height: 150px;
+    object-fit: cover;
+}
+
+.text-muted {
+    font-size: 14px;
+}
+
+.navbar {
+    margin-bottom: 20px;
+}
+
+.image-container {
+    overflow: hidden;
+    border-radius: 10px;
+}

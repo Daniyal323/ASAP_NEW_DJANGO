@@ -1,0 +1,35 @@
+/* Body Background matching your theme */
+body {
+    background-color: #fef1c7; /* This matches the yellow theme from the 2nd image */
+}
+
+.vendor-list-section h2 {
+    color: #333;
+}
+
+.vendor-card {
+    border-radius: 8px;
+}
+
+.vendor-card .card-title {
+    font-weight: bold;
+    color: #333;
+}
+
+.vendor-card .btn-outline-primary {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.vendor-card .btn-outline-primary:hover {
+    background-color: #0056b3;
+    color: #fff;
+}
+
+@media (max-width: 768px) {
+    .vendor-card {
+        text-align: center;
+    }
+}

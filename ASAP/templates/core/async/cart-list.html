@@ -1,0 +1,79 @@
+
+  <!-- Cart Section -->
+  <section class="cart-section py-5">
+    <div class="container">
+      <h3 class="mb-4 text-center">Your Cart</h3>
+      <h2>There are {{ totalcartitems }} item</h2>
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="cart-items">
+            {% for product_id, item in cart_data.items %}
+                <div class="cart-item d-flex justify-content-between align-items-center p-3 mb-3 bg-light shadow-sm">
+                    <div class="cart-item-info d-flex align-items-center">
+                    <img src="{{ item.image }}" alt="{{ item.product_name }}" class="cart-item-image me-3">
+                    <div>
+                        <h5 class="mb-1"><a href="{% url 'core:service-detail' item.pid %}">{{ item.title }}</a></h5>
+                        <small>Quantity: {{ item.qty }}</small>
+                    </div>
+                    </div>
+                    <div class="cart-item-price">
+                    <span>${{ item.price|floatformat:2 }}</span>
+                    </div>
+                    <div class="cart-item-price">
+                    <span>${% widthratio item.price 1 item.qty %}</span>
+                    </div>
+                    <div class="cart-item-remove">
+                    <!-- <form method="POST" action="#">
+                        {% csrf_token %} -->
+                        <button class="btn btn-sm btn-danger delete-product" id="delete-product" data-product="{{ product_id }}">
+                        <i class="fas fa-trash-alt"></i> Remove
+                        </button>
+                    <!-- </form> -->
+                    </div>
+                </div>
+            {% endfor %}
+
+
+            <!-- Repeat this block for more cart items  
+            <div class="cart-item d-flex justify-content-between align-items-center p-3 mb-3 bg-light shadow-sm">
+              <div class="cart-item-info">
+                <h5 class="mb-1">Another Product</h5>
+                <small>Quantity: 2</small>
+              </div>
+              <div class="cart-item-price">
+                <span>$200.00</span>
+              </div>
+              <div class="cart-item-remove">
+                <button class="btn btn-sm btn-danger">
+                  <i class="fas fa-trash-alt"></i> Remove
+                </button>
+              </div>
+            </div> -->
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="cart-summary bg-light p-4 shadow-sm">
+            <h4 class="mb-3">Cart Summary</h4>
+            <ul class="list-group list-group-flush mb-3">
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                Subtotal
+                <span>${{ cart_total_amount|floatformat:2 }}</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                Shipping
+                <span>Free</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                Total
+                <strong>${{ cart_total_amount|floatformat:2 }}</strong>
+              </li>
+            </ul>
+            <button class="btn btn-primary w-100">Proceed to Checkout</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  

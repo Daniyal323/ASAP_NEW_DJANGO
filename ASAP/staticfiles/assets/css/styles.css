@@ -1,0 +1,136 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-color: #0057b8;
+}
+
+.container {
+    display: flex;
+    width: 90%;
+    max-width: 1200px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.left-side,
+.right-side {
+    background-color: #ffd300; /* Yellow color */
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.signup-container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px; /* Ensures the form doesn’t take too much space */
+    text-align: center;
+}
+
+.signup-container h2 {
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.input-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #0057b8; /* Blue color from the image */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #004499; /* Slightly darker shade on hover */
+}
+
+p {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+p a {
+    color: #0057b8;
+    text-decoration: none;
+}
+
+p a:hover {
+    text-decoration: underline;
+}
+
+.quote-container {
+    text-align: center;
+}
+
+.quote-icon {
+    font-size: 10rem; /* Adjust the size to match the commas */
+    color: #0057b8; /* Blue color to match the image */
+}
+
+.quote-text {
+    font-size: 2.5rem; /* Increase size for emphasis */
+    font-weight: bold;
+    margin: 20px 0;
+    color: white; /* White text color for better readability */
+}
+
+.right-side p {
+    font-size: 2rem; /* Adjust to match the size of the text */
+    font-weight: bold;
+    margin: 0;
+    color: white; /* White text color for better readability */
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .right-side {
+        display: none; /* Hide the right side on smaller screens */
+    }
+
+    .left-side {
+        background-color: #f4f4f4; /* Change background to match the body */
+    }
+
+    .signup-container {
+        max-width: 100%; /* Take full width on smaller screens */
+    }
+}
