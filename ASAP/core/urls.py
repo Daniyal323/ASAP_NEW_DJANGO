@@ -1,5 +1,5 @@
 from django.urls import include, path
-from core.views import index, product_list_view,product_detail_view, category_list_view, category_product_list_view, vendor_list_view, vendor_detail_view,ajax_add_review, search_view,add_to_cart, cart_view,delete_item_from_cart, checkout, payment_completed_view, payment_failed_view, about_view
+from core.views import index, product_list_view,product_detail_view, category_list_view, category_product_list_view, vendor_list_view, vendor_detail_view,ajax_add_review, search_view,add_to_cart, cart_view,delete_item_from_cart, checkout, payment_completed_view, payment_failed_view, about_view, contact_view
 from core import views
 
 app_name = 'core'
@@ -36,4 +36,6 @@ urlpatterns = [
     path('save_checkout_view/',views.save_checkout_view, name="save_checkout_view"),
 
     path('about/', about_view, name="about"),
+
+    path('contact/', contact_view, name="contact"),
 ]
