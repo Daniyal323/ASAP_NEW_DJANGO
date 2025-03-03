@@ -26,7 +26,7 @@
 </div>
 
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #ffc107!important;">
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #ffffff!important;">
     <div class="container">
         <a class="navbar-brand" href="#"><img src="{% static 'assets/images/logo.png' %}" alt="Logo" style="width: 150px;"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -47,7 +47,7 @@
                     <a class="nav-link font-weight-bold" href="{% url 'core:about' %}" style="color: black !important;">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link font-weight-bold" href="contact.html" style="color: black !important;">Contact</a>
+                    <a class="nav-link font-weight-bold" href="{% url 'core:contact' %}" style="color: black !important;">Contact</a>
                 </li>
                 <li class="nav-item">
                     <a class="btn btn-primary" href="{% url 'useradmin:dashboard' %}">Be a Seller</a>
