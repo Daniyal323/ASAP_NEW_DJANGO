@@ -26,6 +26,9 @@ def index(request):
 def about_view(request):
     return render(request, 'core/about.html')
 
+def contact_view(request):
+    return render(request, 'core/contact.html')
+
 def product_list_view(request):
     products = Product.objects.filter(product_status="publised")
     #products = Product.objects.all()
