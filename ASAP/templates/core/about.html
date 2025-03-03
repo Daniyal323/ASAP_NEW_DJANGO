@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    .about-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+    }
+
+    .about-title {
+        color: #2c3e50;
+        text-align: center;
+        margin-bottom: 2rem;
+        font-size: 2.5rem;
+    }
+
+    .about-content {
+        display: grid;
+        grid-gap: 2rem;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+
+    .about-section {
+        background: #ffffff;
+        padding: 1.5rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s ease;
+    }
+
+    .about-section:hover {
+        transform: translateY(-5px);
+    }
+
+    .about-section h2 {
+        color: #3498db;
+        margin-bottom: 1rem;
+    }
+
+    .about-section p {
+        color: #34495e;
+        line-height: 1.6;
+    }
+
+    .about-section ul {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+    .about-section li {
+        color: #34495e;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid #eee;
+    }
+
+    .about-section li:last-child {
+        border-bottom: none;
+    }
+</style>
+
+<div class="about-container">
+    <h1 class="about-title">About Us</h1>
+    
+    <div class="about-content">
+        <div class="about-section">
+            <h2>Our Mission</h2>
+            <p>We strive to deliver exceptional solutions that empower businesses and individuals to achieve their goals through innovative technology.</p>
+        </div>
+
+        <div class="about-section">
+            <h2>Our Team</h2>
+            <p>Our diverse team of experts brings together years of experience in software development, design, and customer service to create meaningful solutions.</p>
+        </div>
+
+        <div class="about-section">
+            <h2>Our Values</h2>
+            <ul>
+                <li>Innovation</li>
+                <li>Integrity</li>
+                <li>Excellence</li>
+                <li>Customer Focus</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
