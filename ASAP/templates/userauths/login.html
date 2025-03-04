@@ -6,23 +6,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
-    <link rel="stylesheet" href="{%  static 'assets/css/styles.css'  %}">
+    <link rel="stylesheet" href="{% static 'assets/css/styles.css' %}">
+    <style>
+        .alert-danger {
+            background-color: #fff;
+            border: 1px solid #dc3545;
+            border-radius: 4px;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .alert-danger p {
+            color: #dc3545;
+            font-size: 14px;
+            margin: 0;
+            padding: 5px 0;
+        }
+
+        .input-error {
+            border-color: #dc3545;
+        }
+
+        .error-message {
+            color: #dc3545;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <div class="left-side">
             <div class="signup-container">
                 <h2>Login</h2>
+                
+                {% if messages %}
+                    <div class="alert alert-danger">
+                        {% for message in messages %}
+                            <p>{{ message }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
                 <form id="login-form" method="POST">
                     {% csrf_token %}
+                    
+                    {% if form.non_field_errors %}
+                        <div class="alert alert-danger">
+                            {% for error in form.non_field_errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
                     <div class="input-group">
                         <label for="username">Username</label>
-                        <input type="text" id="username" name="username" required>
+                        <input type="text" id="username" name="username" required 
+                               class="{% if form.username.errors %}input-error{% endif %}">
+                        {% if form.username.errors %}
+                            <span class="error-message">{{ form.username.errors.0 }}</span>
+                        {% endif %}
                     </div>
+
                     <div class="input-group">
                         <label for="password">Password</label>
-                        <input type="password" id="password" name="password" required>
+                        <input type="password" id="password" name="password" required
+                               class="{% if form.password.errors %}input-error{% endif %}">
+                        {% if form.password.errors %}
+                            <span class="error-message">{{ form.password.errors.0 }}</span>
+                        {% endif %}
                     </div>
+
                     <button type="submit" name="login">Login</button>
                 </form>
                 <p>Don't have an account? <a href="{% url 'userauths:sign-up' %}">Signup here</a></p>
@@ -30,12 +84,11 @@
         </div>
         <div class="right-side">
             <div class="quote-container">
-                <span class="quote-icon">“</span>
+                <span class="quote-icon">"</span>
                 <p class="quote-text">Service at your Door Step</p>
-                <span class="quote-icon">”</span>
+                <span class="quote-icon">"</span>
             </div>
         </div>
     </div>
-    <!-- <script src="{%  static 'assets/scripts/script.js'  %}"></script> -->
 </body>
 </html>
