@@ -1,53 +1,85 @@
 {% load static %}
-<!-- {%  static 'assets/css/styles.css'  %}
-{%  static 'assets/scripts/script.js'  %} -->
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        ASAP SERVICE | REGISTER
-    </title>
-    <link rel="stylesheet" href="{%  static 'assets/css/styles.css'  %}">
+    <title>ASAP SERVICE | REGISTER</title>
+    <link rel="stylesheet" href="{% static 'assets/css/styles.css' %}">
+    <style>
+        .alert-danger {
+            background-color: #fff;
+            border: 1px solid #dc3545;
+            border-radius: 4px;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .alert-danger p {
+            color: #dc3545;
+            font-size: 14px;
+            margin: 0;
+            padding: 5px 0;
+        }
+
+        .input-error {
+            border-color: #dc3545;
+        }
+
+        .error-message {
+            color: #dc3545;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <div class="left-side">
             <div class="signup-container">
-                {% if forms.errors %}
-                <div class="alert alert-danger">
-                    <p>{{form.errors}}</p>
-                </div>
-                {% endif %}
                 <h2>Signup</h2>
                 <form id="signup-form" method="POST">
                     {% csrf_token %}
+                    
+                    {% if form.errors %}
+                        <div class="alert alert-danger">
+                            {% for field, errors in form.errors.items %}
+                                {% for error in errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
                     <div class="input-group">
-                        {{form.username}}
+                        {{ form.username }}
+                        {% if form.username.errors %}
+                            <span class="error-message">{{ form.username.errors.0 }}</span>
+                        {% endif %}
                     </div>
+
                     <div class="input-group">
-                        {{form.email}}
+                        {{ form.email }}
+                        {% if form.email.errors %}
+                            <span class="error-message">{{ form.email.errors.0 }}</span>
+                        {% endif %}
                     </div>
+
                     <div class="input-group">
-                        {{form.password1}}
+                        {{ form.password1 }}
+                        {% if form.password1.errors %}
+                            <span class="error-message">{{ form.password1.errors.0 }}</span>
+                        {% endif %}
                     </div>
+
                     <div class="input-group">
-                        {{form.password2}}
+                        {{ form.password2 }}
+                        {% if form.password2.errors %}
+                            <span class="error-message">{{ form.password2.errors.0 }}</span>
+                        {% endif %}
                     </div>
-                    <!--<div class="input-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="input-group">
-                        <label for="password">Password</label>
-                        <input type="password" id="password" name="password" required>
-                    </div>
-                    <div class="input-group">
-                        <label for="confirm-password">Confirm Password</label>
-                        <input type="password" id="confirm-password" name="confirm-password" required>
-                    </div> -->
+
                     <button type="submit">Signup</button>
                 </form>
                 <p>Already have an account? <a href="{% url 'userauths:sign-in' %}">Login here</a></p>
@@ -55,12 +87,11 @@
         </div>
         <div class="right-side">
             <div class="quote-container">
-                <span class="quote-icon">“</span>
+                <span class="quote-icon">"</span>
                 <p class="quote-text">Service at your Door Step</p>
-                <span class="quote-icon">”</span>
+                <span class="quote-icon">"</span>
             </div>
         </div>
     </div>
-    <!-- <script src="{%  static 'assets/scripts/script.js'  %}"></script> -->
 </body>
 </html>
