@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render
 from core.models import Product, Category, Vendor, CartOrder, CartOrderItems, ProductImages, ProductReview, wishlist, Address
 from django.db.models import Avg, Count
-from core.forms import ProductReviewForm
+from core.forms import ProductReviewForm, SellerRegistrationForm
 from django.http import JsonResponse
 from django.contrib import messages
 from django.template.loader import render_to_string
@@ -334,3 +334,25 @@ def payment_completed_view(request, oid):
 @login_required
 def payment_failed_view(request):
     return render(request, 'core/payment-failed.html')
+
+
+@login_required
+def become_seller(request):
+    # Check if user is already a seller
+    try:
+        if hasattr(request.user, 'seller'):
+            return redirect('useradmin:dashboard')
+    except:
+        pass
+
+    if request.method == 'POST':
+        form = SellerRegistrationForm(request.POST)
+        if form.is_valid():
+            seller = form.save(commit=False)
+            seller.user = request.user
+            seller.save()
+            return redirect('useradmin:dashboard')
+    else:
+        form = SellerRegistrationForm()
+    
+    return render(request, 'core/become_seller.html', {'form': form})
