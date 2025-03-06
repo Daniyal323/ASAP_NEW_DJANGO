@@ -38,4 +38,6 @@ urlpatterns = [
     path('about/', about_view, name="about"),
 
     path('contact/', contact_view, name="contact"),
+
+    path('become-seller/', views.become_seller, name='become_seller'),
 ]
