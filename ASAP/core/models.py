@@ -211,3 +211,15 @@ class Address(models.Model):
 
     class Meta:
         verbose_name_plural = "Address"
+
+############################### Become a Vendor Auth ####################################
+class Seller(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    business_name = models.CharField(max_length=100)
+    business_address = models.TextField()
+    phone = models.CharField(max_length=15)
+    approved = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_created=True)
+
+    def __str__(self):
+        return self.business_name
