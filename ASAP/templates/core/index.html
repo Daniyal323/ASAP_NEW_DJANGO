@@ -6,171 +6,187 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Service Booking</title>
-    <!-- Bootstrap CSS -->
-         <!-- Bootstrap CSS -->
-    <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> -->
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"> -->
-        <!-- Bootstrap CSS -->
-        <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> -->
-        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> -->
-    <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> -->
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> -->
-    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
-    <!-- <script src="{%  static 'assets/scripts/function.js?v=1'  %}"></script> -->
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"> -->
-    <!-- Bootstrap CSS -->
+    
+    <!-- CSS Dependencies -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{%  static 'assets/css/product-details.css'  %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
+    <link rel="stylesheet" href="{% static 'assets/css/product-details.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
-    
+
+    <style>
+        /* Mobile Responsive Styles */
+        @media (max-width: 991px) {
+            .navbar-collapse {
+                background: white;
+                padding: 1rem;
+                border-radius: 8px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                z-index: 1000;
+            }
+            
+            .nav-item {
+                margin: 8px 0;
+                text-align: center;
+            }
+            
+            .navbar-toggler {
+                border: 2px solid black;
+            }
+            
+            .navbar-toggler-icon {
+                background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0, 0, 0, 0.75)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+            }
+        }
+
+        .service-item {
+            height: 100%;
+            margin-bottom: 20px;
+        }
+
+        .service-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        @media (max-width: 768px) {
+            .search-section .form-control,
+            .search-section .btn {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+            
+            .booking-section .booking-form {
+                margin-bottom: 20px;
+            }
+        }
+
+        .contact-info {
+            font-size: 14px;
+        }
+
+        @media (max-width: 576px) {
+            .contact-info span {
+                display: block;
+                margin: 5px 0;
+                text-align: center;
+            }
+        }
+    </style>
 </head>
+
 <body>
     <!-- Contact Info -->
     <div class="contact-info bg-dark text-white py-2">
-        <div class="container d-flex justify-content-end">
-            <span>inquiriesesa@gmail.com</span>
-            <span class="phone-number ml-4">+13016060756</span>
-            <span class="phone-number ml-4">+13016060756</span>
+        <div class="container d-flex justify-content-end flex-wrap">
+            <span class="me-3">inquiriesesa@gmail.com</span>
+            <span class="phone-number mx-3">+13016060756</span>
+            <span class="phone-number">+13016060756</span>
         </div>
     </div>
-    
-    <!-- Header
-    <header class="bg-warning py-3">
-        <div class="container d-flex justify-content-between align-items-center">
-            <div class="logo">
-                <img src="{% static 'assets/images/logo.png' %}" alt="Logo" class="logo-img">
-            </div>
-            <nav class="navbar navbar-expand-lg navbar-light">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item"><a class="nav-link font-weight-bold" href="{% url 'core:index' %}">Home</a></li>
-                        <li class="nav-item"><a class="nav-link font-weight-bold" href="{% url 'core:service-list' %}">Services</a></li>
-                        <li class="nav-item"><a class="nav-link font-weight-bold" href="#">About</a></li>
-                        <li class="nav-item"><a class="nav-link font-weight-bold" href="#">Contact</a></li>
-                        <li class="nav-item"><a class="nav-link btn btn-primary text-white" href="#">Be a Seller</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-user"></i></a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'userauths:sign-out' %}"><i class="fas fa-sign-out-alt"></i></a></li>
-                    </ul>
-                </div>
-            </nav>
-        </div>
-    </header> -->
 
     <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #ffffff!important;">
-    <div class="container">
-      <a class="navbar-brand" href="#"><img src="{% static 'assets/images/logo.png' %}" alt="Logo"
-          style="width: 150px;"></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link font-weight-bold" href="{% url 'core:index' %}" style="color: black !important;">Home</a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link font-weight-bold" href="{% url 'core:service-list' %}"
-              style="color: black !important;">Services</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link font-weight-bold" href="{% url 'core:vendor-list' %}"
-              style="color: black !important;">Vendors</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link font-weight-bold" href="{% url 'core:about' %}" style="color: black !important;">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link font-weight-bold" href="{% url 'core:contact' %}" style="color: black !important;">Contact</a>
-          </li>
-          <li class="nav-item">
-            <a class="btn btn-primary" href="{% url 'core:become_seller' %}">Be a Seller</a>
-          </li>
-          <!-- Cart Icon -->
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'core:cart' %}" style="color: black !important;">
-            <i class="fas fa-shopping-cart"></i>
-            <!-- Optionally show cart count -->
-            <span class="badge bg-danger cart-items-count">{{ request.session.cart_data_obj|length }}</span>
-          </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'userauths:sign-out' %}" style="color: black !important;">
-                <i class="fas fa-sign-out-alt"></i>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="{% static 'assets/images/logo.png' %}" alt="Logo" style="width: 150px;">
             </a>
-        </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-
-<!-- Booking Section -->
-<section class="booking-section py-5 bg-light">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-md-6">
-                <div class="booking-form bg-warning p-4 rounded shadow-sm">
-                    <form action="#">
-                        <input type="text" class="form-control mb-3" placeholder="Name" required>
-                        <input type="email" class="form-control mb-3" placeholder="Email" required>
-                        <input type="text" class="form-control mb-3" placeholder="Contact Details" required>
-                        <input type="datetime" class="form-control mb-3" name="date" id="date" placeholder="Date" required>
-                        <input type="text" class="form-control mb-3" placeholder="Time Slot" required>
-                        <button type="submit" class="btn btn-primary btn-block">Book Now</button>
-                    </form>
-                </div>
-            </div>
-            <div class="col-md-6 text-center">
-                <img src="{% static 'assets/images/subject.png' %}" alt="User" class="img-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'core:index' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'core:service-list' %}">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'core:vendor-list' %}">Vendors</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'core:about' %}">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'core:contact' %}">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-primary" href="{% url 'useradmin:dashboard' %}">Be a Seller</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'core:cart' %}">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="badge bg-danger cart-items-count">{{ request.session.cart_data_obj|length }}</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'userauths:sign-out' %}">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
-    </div>
-</section>
+    </nav>
 
+    <!-- Booking Section -->
+    <section class="booking-section py-5 bg-light">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12 col-md-6">
+                    <div class="booking-form bg-warning p-4 rounded shadow-sm">
+                        <form action="#">
+                            <input type="text" class="form-control mb-3" placeholder="Name" required>
+                            <input type="email" class="form-control mb-3" placeholder="Email" required>
+                            <input type="text" class="form-control mb-3" placeholder="Contact Details" required>
+                            <input type="datetime-local" class="form-control mb-3" name="date" required>
+                            <input type="text" class="form-control mb-3" placeholder="Time Slot" required>
+                            <button type="submit" class="btn btn-primary w-100">Book Now</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 text-center mt-4 mt-md-0">
+                    <img src="{% static 'assets/images/subject.png' %}" alt="User" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Search Section -->
-    <section class="search-section py-5 bg-primary" style="background-color: #ffc107 !important;">
+    <section class="search-section py-5" style="background-color: #ffc107;">
         <div class="container">
             <div class="card p-3 shadow-lg rounded">
-                <form class="row align-items-center" action="{% url 'core:search' %}" method="GET">
-                    <div class="col-md-5 col-sm-8 mb-3">
+                <form class="row g-3" action="{% url 'core:search' %}" method="GET">
+                    <div class="col-12 col-md-5">
                         <input type="text" class="form-control form-control-lg rounded-pill" name="title" placeholder="Service Name" required>
                     </div>
-                    <div class="col-md-4 col-sm-7 mb-3">
+                    <div class="col-12 col-md-4">
                         <input type="text" class="form-control form-control-lg rounded-pill" name="city" placeholder="City" required>
                     </div>
-                    <div class="col-md-3 col-sm-6 mb-3 text-center">
-                        <button type="submit" class="btn btn-warning btn-lg rounded-pill">Search</button>
+                    <div class="col-12 col-md-3">
+                        <button type="submit" class="btn btn-warning btn-lg rounded-pill w-100">Search</button>
                     </div>
                 </form>
             </div>
         </div>
     </section>
 
-
-
     <!-- Services Section -->
     <section class="services-section py-5 bg-light">
         <div class="container">
             <div class="row">
-                <!-- Service Item 1 -->
-                 {% for p in products %}
-                <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
-                    <div class="card service-item">
+                {% for p in products %}
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+                    <div class="card service-item h-100">
                         <div class="position-relative">
-                            <img src="{{ p.image.url }}" alt="" class="img-fluid">
-                            <span class="badge badge-danger position-absolute">Hot</span>
+                            <img src="{{ p.image.url }}" alt="{{ p.title }}" class="card-img-top">
+                            <span class="badge badge-danger position-absolute top-0 end-0 m-2">Hot</span>
                         </div>
                         <div class="card-body text-center">
                             <h5 class="card-title"><b>{{ p.title }}</b></h5>
@@ -178,129 +194,29 @@
                             <div class="rating mb-2">
                                 <span class="text-warning">★★★★☆</span> (4.0)
                             </div>
-                            <div class="price">
-                                <span class="text-success">$</span><span class="text-success current-product-price-{{ p.id }}" id="current-product-price">{{ p.price }}</span>
+                            <div class="price mb-3">
+                                <span class="text-success">$</span>
+                                <span class="text-success current-product-price-{{ p.id }}">{{ p.price }}</span>
                                 <del class="text-muted">${{ p.old_price }}</del>
                             </div>
-                            <input type="hidden" value="1" id="quantity" class="quantity-{{ p.id }}">
-                            <input type="hidden" value="{{ p.pid }}" id="product-pid" class="product-pid-{{ p.id }}">
-                            <input type="hidden" class="product-image-{{ p.id }}" id="product-image" value="{{ p.image.url }}">
-                            <input type="hidden" class="product-id-{{ p.id }}" id="product-id" value="{{ p.id }}">
-                            <input type="hidden" class="product-title-{{ p.id }}" id="product-title" value="{{ p.title }}">
-                            <button class="btn btn-primary btn-sm mt-2 add-to-cart-btn" data-index="{{ p.id }}" id="add-to-cart-btn">Add</button>
+                            <input type="hidden" value="1" class="quantity-{{ p.id }}">
+                            <input type="hidden" value="{{ p.pid }}" class="product-pid-{{ p.id }}">
+                            <input type="hidden" class="product-image-{{ p.id }}" value="{{ p.image.url }}">
+                            <input type="hidden" class="product-id-{{ p.id }}" value="{{ p.id }}">
+                            <input type="hidden" class="product-title-{{ p.id }}" value="{{ p.title }}">
+                            <button class="btn btn-primary w-100 add-to-cart-btn" data-index="{{ p.id }}">Add to Cart</button>
                         </div>
-                        <!-- <div class="overlay d-flex justify-content-center align-items-center">
-                            <i class="fas fa-heart mx-2"></i>
-                            <i class="fas fa-random mx-2"></i>
-                            <a href="{% url 'core:service-detail' p.pid %}"><i class="fas fa-eye mx-2"></i></a>
-                        </div> -->
                     </div>
                 </div>
                 {% endfor %}
-                <!-- Repeat similar blocks for other services -->
-                 
             </div>
         </div>
-        
     </section>
 
-
-    <!-- Bootstrap JS and dependencies -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{% static 'assets/scripts/main.js' %}"></script>
     <script src="{% static 'assets/scripts/function.js' %}"></script>
-    <!-- <script>
-        $("#add-to-cart-btn").on("click", function(){
-    
-    let this_val = $(this)
-    let index = this_val.attr("data-index")
-
-    let quantity = $("#quantity").val()
-    let product_title = $("#product-title").val()
-    let product_id = $("#product-id").val()
-    let price = $("#current-product-price").text()
-    let product_pid = $("#product-pid").val()
-    let product_image = $("#product-image").val()
-
-    console.log("Quantity: ", quantity);
-    console.log("Product Title: ", product_title);
-    console.log("Product ID: ", product_id);
-    console.log("Price: ", price);
-    console.log("image: ", product_image);
-    console.log("pid: ", product_pid);
-    console.log("Current Element", this_val);
-    $.ajax({
-            url: '/add-to-cart',
-            data: {
-            'id': product_id,
-            'pid': product_pid,
-            'image': product_image,
-            'qty': quantity,
-            'title': product_title,
-            'price': price,
-    
-            },
-            dataType: 'json',
-            beforeSend: function(){
-            console.log("Adding Product to cart");
-            },
-            success: function(response){
-            this_val.html("Item added to cart");
-            console.log("Added Product to cart");
-            $(".cart-items-count").text(response.totalcartitems)
-            }
-        })
-})
-</script> -->
-
-//     <!-- <script>
-//         $("#add-to-cart-btn").on("click", function(){
-//     let this_val = $(this)
-//     let index = this_val.attr("data-index")
-
-//     let quantity = $(".quantity-"+index).val()
-//     let product_title = $(".product-title-"+index).val()
-//     let product_id = $(".product-id-"+index).val()
-//     let price = $(".current-product-price-"+index).text()
-//     let product_pid = $(".product-pid-"+index).val()
-//     let product_image = $(".product-image-"+index).val()
-
-//     console.log("Quantity: ", quantity);
-//     console.log("Product Title: ", product_title);
-//     console.log("Product ID: ", product_id);
-//     console.log("Price: ", price);
-//     console.log("Current Element", this_val);
-//     console.log("image: ", product_image);
-//     console.log("pid: ", product_pid);
-    
-//     $.ajax({
-//         url: '/add-to-cart',
-//         data: {
-//         'id': product_id,
-//         'pid': product_pid,
-//         'image': product_image,
-//         'qty': quantity,
-//         'title': product_title,
-//         'price': price,
-
-//         },
-//         dataType: 'json',
-//         beforeSend: function(){
-//         console.log("Adding Product to cart");
-//         },
-//         success: function(response){
-//         this_val.html("Item added to cart");
-//         console.log("Added Product to cart");
-//         $(".cart-items-count").text(response.totalcartitems)
-//         }
-//     })
-
-// }) -->
-
-    </script>
 </body>
 </html>
- 
