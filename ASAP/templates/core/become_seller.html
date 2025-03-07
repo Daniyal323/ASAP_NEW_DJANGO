@@ -8,30 +8,128 @@
     <style>
         .seller-form {
             max-width: 600px;
-            margin: 50px auto;
-            padding: 30px;
+            margin: 20px auto;
+            padding: 25px;
             box-shadow: 0 0 20px rgba(0,0,0,0.1);
-            border-radius: 10px;
+            border-radius: 15px;
+            background: #fff;
         }
-        .form-group {
-            margin-bottom: 20px;
-        }
+
         .header {
             text-align: center;
             margin-bottom: 30px;
+            padding: 20px 10px;
         }
-        .btn-submit {
+
+        .header h2 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #444;
+        }
+
+        .form-control {
             width: 100%;
             padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
             background-color: #007bff;
             border: none;
             color: white;
             font-size: 16px;
-            border-radius: 5px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-submit:hover {
+            background-color: #0056b3;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #007bff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #0056b3;
+        }
+
+        /* Error messages styling */
+        .errorlist {
+            color: #dc3545;
+            list-style: none;
+            padding: 0;
+            margin: 5px 0;
+            font-size: 14px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .seller-form {
+                margin: 15px;
+                padding: 20px;
+            }
+
+            .header h2 {
+                font-size: 1.75rem;
+            }
+
+            .header p {
+                font-size: 0.9rem;
+            }
+
+            .form-control {
+                padding: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .seller-form {
+                padding: 15px;
+            }
+
+            .header h2 {
+                font-size: 1.5rem;
+            }
+
+            .btn-submit {
+                padding: 12px;
+            }
         }
     </style>
 </head>
-<body>
+<body class="bg-light">
     <div class="container">
         <div class="seller-form">
             <div class="header">
@@ -41,29 +139,30 @@
             
             <form method="POST">
                 {% csrf_token %}
+                
                 <div class="form-group">
                     <label for="business_name">Business Name</label>
                     {{ form.business_name.errors }}
-                    {{ form.business_name }}
+                    {{ form.business_name|attr:"class:form-control"|attr:"placeholder:Enter your business name" }}
                 </div>
-                
+
                 <div class="form-group">
                     <label for="business_address">Business Address</label>
                     {{ form.business_address.errors }}
-                    {{ form.business_address }}
+                    {{ form.business_address|attr:"class:form-control"|attr:"placeholder:Enter your business address" }}
                 </div>
-                
+
                 <div class="form-group">
                     <label for="phone">Phone Number</label>
                     {{ form.phone.errors }}
-                    {{ form.phone }}
+                    {{ form.phone|attr:"class:form-control"|attr:"placeholder:Enter your phone number" }}
                 </div>
-                
+
                 <button type="submit" class="btn-submit">Register as Seller</button>
             </form>
-            
-            <div class="mt-3 text-center">
-                <a href="/" class="text-decoration-none">Back to Home</a>
+
+            <div class="text-center">
+                <a href="/" class="back-link">Back to Home</a>
             </div>
         </div>
     </div>
