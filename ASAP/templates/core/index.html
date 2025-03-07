@@ -1,5 +1,4 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,39 +6,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Service Booking</title>
     
-    <!-- CSS Dependencies -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="{% static 'assets/css/product-details.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}">
 
     <style>
-        /* Mobile Responsive Styles */
+        /* Mobile-first responsive styles */
+        .navbar-toggler {
+            border-color: #000 !important;
+        }
+
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0, 0, 0, 0.75)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+        }
+
         @media (max-width: 991px) {
             .navbar-collapse {
-                background: white;
-                padding: 1rem;
-                border-radius: 8px;
-                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
                 position: absolute;
                 top: 100%;
                 left: 0;
                 right: 0;
+                background: white;
+                padding: 1rem;
                 z-index: 1000;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             }
-            
-            .nav-item {
-                margin: 8px 0;
+
+            .navbar-nav {
                 text-align: center;
             }
-            
-            .navbar-toggler {
-                border: 2px solid black;
+
+            .nav-item {
+                margin: 0.5rem 0;
             }
-            
-            .navbar-toggler-icon {
-                background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0, 0, 0, 0.75)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+
+            .contact-info span {
+                display: block;
+                text-align: center;
+                margin: 0.25rem 0;
+            }
+
+            .contact-info .container {
+                justify-content: center !important;
             }
         }
 
@@ -56,25 +66,14 @@
 
         @media (max-width: 768px) {
             .search-section .form-control,
-            .search-section .btn {
-                width: 100%;
+            .search-section .btn,
+            .booking-form .form-control,
+            .booking-form .btn {
                 margin-bottom: 10px;
             }
-            
+
             .booking-section .booking-form {
-                margin-bottom: 20px;
-            }
-        }
-
-        .contact-info {
-            font-size: 14px;
-        }
-
-        @media (max-width: 576px) {
-            .contact-info span {
-                display: block;
-                margin: 5px 0;
-                text-align: center;
+                margin-bottom: 2rem;
             }
         }
     </style>
@@ -91,7 +90,7 @@
     </div>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <nav class="navbar navbar-expand-lg" style="background-color: #ffffff;">
         <div class="container">
             <a class="navbar-brand" href="#">
                 <img src="{% static 'assets/images/logo.png' %}" alt="Logo" style="width: 150px;">
@@ -102,31 +101,31 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'core:index' %}">Home</a>
+                        <a class="nav-link" href="{% url 'core:index' %}" style="color: black;">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'core:service-list' %}">Services</a>
+                        <a class="nav-link" href="{% url 'core:service-list' %}" style="color: black;">Services</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'core:vendor-list' %}">Vendors</a>
+                        <a class="nav-link" href="{% url 'core:vendor-list' %}" style="color: black;">Vendors</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'core:about' %}">About</a>
+                        <a class="nav-link" href="{% url 'core:about' %}" style="color: black;">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'core:contact' %}">Contact</a>
+                        <a class="nav-link" href="{% url 'core:contact' %}" style="color: black;">Contact</a>
                     </li>
                     <li class="nav-item">
-                        <a class="btn btn-primary" href="{% url 'useradmin:dashboard' %}">Be a Seller</a>
+                        <a class="btn btn-primary" href="{% url 'core:become_seller' %}">Be a Seller</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'core:cart' %}">
+                        <a class="nav-link" href="{% url 'core:cart' %}" style="color: black;">
                             <i class="fas fa-shopping-cart"></i>
                             <span class="badge bg-danger cart-items-count">{{ request.session.cart_data_obj|length }}</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'userauths:sign-out' %}">
+                        <a class="nav-link" href="{% url 'userauths:sign-out' %}" style="color: black;">
                             <i class="fas fa-sign-out-alt"></i>
                         </a>
                     </li>
@@ -139,7 +138,7 @@
     <section class="booking-section py-5 bg-light">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-12 col-md-6">
+                <div class="col-12 col-md-6 mb-4 mb-md-0">
                     <div class="booking-form bg-warning p-4 rounded shadow-sm">
                         <form action="#">
                             <input type="text" class="form-control mb-3" placeholder="Name" required>
@@ -151,7 +150,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="col-12 col-md-6 text-center mt-4 mt-md-0">
+                <div class="col-12 col-md-6 text-center">
                     <img src="{% static 'assets/images/subject.png' %}" alt="User" class="img-fluid">
                 </div>
             </div>
@@ -164,13 +163,13 @@
             <div class="card p-3 shadow-lg rounded">
                 <form class="row g-3" action="{% url 'core:search' %}" method="GET">
                     <div class="col-12 col-md-5">
-                        <input type="text" class="form-control form-control-lg rounded-pill" name="title" placeholder="Service Name" required>
+                        <input type="text" class="form-control form-control-lg" name="title" placeholder="Service Name" required>
                     </div>
                     <div class="col-12 col-md-4">
-                        <input type="text" class="form-control form-control-lg rounded-pill" name="city" placeholder="City" required>
+                        <input type="text" class="form-control form-control-lg" name="city" placeholder="City" required>
                     </div>
                     <div class="col-12 col-md-3">
-                        <button type="submit" class="btn btn-warning btn-lg rounded-pill w-100">Search</button>
+                        <button type="submit" class="btn btn-warning btn-lg w-100">Search</button>
                     </div>
                 </form>
             </div>
@@ -185,7 +184,7 @@
                 <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
                     <div class="card service-item h-100">
                         <div class="position-relative">
-                            <img src="{{ p.image.url }}" alt="{{ p.title }}" class="card-img-top">
+                            <img src="{{ p.image.url }}" alt="{{ p.title }}" class="img-fluid">
                             <span class="badge badge-danger position-absolute top-0 end-0 m-2">Hot</span>
                         </div>
                         <div class="card-body text-center">
