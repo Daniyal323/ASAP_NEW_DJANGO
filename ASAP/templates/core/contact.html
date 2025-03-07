@@ -8,92 +8,118 @@
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}">
-
+    
     <style>
+        /* Navbar Styles */
         .navbar-toggler {
             border-color: #000 !important;
         }
-
+        
         .navbar-toggler-icon {
             background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0, 0, 0, 0.75)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
         }
 
-        .contact-hero {
-            background: linear-gradient(rgba(248, 249, 250, 0.9), rgba(248, 249, 250, 0.9));
-            padding: 4rem 0;
+        /* Contact Info Header */
+        .contact-info {
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .contact-info span {
+                display: block;
+                margin: 5px 0;
+                text-align: center;
+            }
+            .contact-info .container {
+                justify-content: center !important;
+            }
         }
 
-        .contact-info-box {
-            padding: 1.5rem;
-            border-radius: 8px;
-            background: white;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+        /* Contact Form Card */
+        .contact-card {
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             transition: transform 0.3s ease;
         }
 
-        .contact-info-box:hover {
+        .contact-card:hover {
             transform: translateY(-5px);
         }
 
-        .contact-info-box i {
-            font-size: 1.5rem;
-            margin-right: 0.5rem;
+        /* Contact Info Boxes */
+        .contact-info-box {
+            padding: 20px;
+            border-radius: 10px;
+            background: #f8f9fa;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
         }
 
-        .contact-form {
-            background: white;
+        .contact-info-box:hover {
+            background: #fff;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .contact-info-box i {
+            font-size: 24px;
+            margin-right: 15px;
+        }
+
+        /* Map Container */
+        .map-container {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Form Elements */
+        .form-control {
             border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            padding: 12px;
+            border: 1px solid #dee2e6;
         }
 
         .form-control:focus {
-            border-color: #ffc107;
             box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.25);
+            border-color: #ffc107;
         }
 
-        .map-container {
+        .btn-warning {
             border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            padding: 12px 30px;
+            font-weight: 600;
         }
 
+        /* Responsive Adjustments */
         @media (max-width: 991px) {
             .navbar-collapse {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
                 background: white;
-                padding: 1rem;
-                z-index: 1000;
-                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            }
-
-            .navbar-nav {
-                text-align: center;
+                padding: 15px;
+                border-radius: 8px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+                margin-top: 10px;
             }
 
             .nav-item {
-                margin: 0.5rem 0;
+                margin: 8px 0;
+            }
+
+            .display-4 {
+                font-size: 2.5rem;
             }
         }
 
         @media (max-width: 768px) {
-            .contact-hero {
-                padding: 2rem 0;
+            .contact-section {
+                text-align: center;
             }
-
+            
             .contact-info-box {
-                margin-bottom: 1rem;
-            }
-
-            .contact-form {
-                margin-top: 2rem;
+                text-align: left;
             }
 
             .map-container {
-                margin-top: 2rem;
+                margin-top: 30px;
                 height: 300px !important;
             }
         }
@@ -101,7 +127,7 @@
 </head>
 
 <body>
-    <!-- Contact Info Bar -->
+    <!-- Contact Info Header -->
     <div class="contact-info bg-dark text-white py-2">
         <div class="container d-flex justify-content-end flex-wrap">
             <span class="me-3">inquiriesesa@gmail.com</span>
@@ -110,8 +136,8 @@
         </div>
     </div>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg" style="background-color: #ffffff;">
+    <!-- Enhanced Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top bg-white shadow-sm">
         <div class="container">
             <a class="navbar-brand" href="#">
                 <img src="{% static 'assets/images/logo.png' %}" alt="Logo" style="width: 150px;">
@@ -120,25 +146,57 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <!-- Your existing navbar items -->
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'core:index' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'core:service-list' %}">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'core:vendor-list' %}">Vendors</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'core:about' %}">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'core:contact' %}">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-primary" href="{% url 'core:become_seller' %}">Be a Seller</a>
+                    </li>
+                    <li class="nav-item position-relative">
+                        <a class="nav-link" href="{% url 'core:cart' %}">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="badge bg-danger position-absolute top-0 end-0 translate-middle">
+                                {{ request.session.cart_data_obj|length }}
+                            </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'userauths:sign-out' %}">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Contact Hero Section -->
-    <section class="contact-hero">
+    <!-- Contact Section -->
+    <section class="py-5 bg-light contact-section">
         <div class="container">
             <div class="row g-4">
                 <div class="col-lg-6">
-                    <h1 class="display-4 fw-bold mb-4">Get in Touch</h1>
-                    <p class="lead mb-5">We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+                    <h1 class="display-4 mb-4">Get in Touch</h1>
+                    <p class="lead mb-4">We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
                     
-                    <div class="contact-info-box mb-4">
+                    <div class="contact-info-box">
                         <h3><i class="fas fa-map-marker-alt text-warning"></i> Our Location</h3>
                         <p class="mb-0">123 Service Street, City, Country</p>
                     </div>
                     
-                    <div class="contact-info-box mb-4">
+                    <div class="contact-info-box">
                         <h3><i class="fas fa-phone text-warning"></i> Phone Numbers</h3>
                         <p class="mb-0">+13016060756<br>+13016060756</p>
                     </div>
@@ -150,28 +208,30 @@
                 </div>
                 
                 <div class="col-lg-6">
-                    <div class="contact-form p-4">
-                        <h3 class="mb-4">Send us a Message</h3>
-                        <form action="#" method="POST">
-                            {% csrf_token %}
-                            <div class="mb-3">
-                                <label class="form-label">Your Name</label>
-                                <input type="text" class="form-control" name="name" required>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Email Address</label>
-                                <input type="email" class="form-control" name="email" required>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Subject</label>
-                                <input type="text" class="form-control" name="subject" required>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Message</label>
-                                <textarea class="form-control" name="message" rows="5" required></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-warning btn-lg w-100">Send Message</button>
-                        </form>
+                    <div class="contact-card card">
+                        <div class="card-body p-4">
+                            <h3 class="card-title mb-4">Send us a Message</h3>
+                            <form action="#" method="POST">
+                                {% csrf_token %}
+                                <div class="mb-3">
+                                    <label class="form-label">Your Name</label>
+                                    <input type="text" class="form-control" name="name" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Email Address</label>
+                                    <input type="email" class="form-control" name="email" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Subject</label>
+                                    <input type="text" class="form-control" name="subject" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Message</label>
+                                    <textarea class="form-control" name="message" rows="5" required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-warning w-100">Send Message</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -182,7 +242,8 @@
     <section class="py-5">
         <div class="container">
             <div class="map-container">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387193.30596073366!2d-74.25986548248684!3d40.69714941932609!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2s!4v1645567252979!5m2!1sen!2s" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387193.30596073366!2d-74.25986548248684!3d40.69714941932609!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2s!4v1645567252979!5m2!1sen!2s" 
+                    width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
         </div>
     </section>
@@ -190,6 +251,5 @@
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="{% static 'assets/scripts/main.js' %}"></script>
 </body>
 </html>
