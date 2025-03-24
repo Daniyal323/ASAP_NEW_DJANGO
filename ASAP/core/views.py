@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-from core.models import Product, Category, Vendor, CartOrder, CartOrderItems, ProductImages, ProductReview, wishlist, Address
+from core.models import Product, Category, Vendor, CartOrder, CartOrderItems, ProductImages, ProductReview, wishlist, Address, Subscriber
 from django.db.models import Avg, Count
 from core.forms import ProductReviewForm, SellerRegistrationForm
 from django.http import JsonResponse
@@ -356,3 +356,18 @@ def become_seller(request):
         form = SellerRegistrationForm()
     
     return render(request, 'core/become_seller.html', {'form': form})
+
+def subscribe(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        if email:
+            # Check if email already exists
+            if not Subscriber.objects.filter(email=email).exists():
+                # Save new subscriber
+                Subscriber.objects.create(email=email)
+                messages.success(request, "Thank you for subscribing to our newsletter!")
+            else:
+                messages.info(request, "You are already subscribed to our newsletter.")
+        else:
+            messages.error(request, "Please provide a valid email address.")
+    return redirect(request.META.get('HTTP_REFERER', 'core:index'))
