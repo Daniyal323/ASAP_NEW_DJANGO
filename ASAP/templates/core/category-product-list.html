@@ -215,8 +215,54 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-dark text-white text-center py-3">
-        <p class="mb-0">&copy; 2024 ASAP Services. All Rights Reserved.</p>
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5 class="footer-title">ASAP Services</h5>
+                    <p>Your one-stop platform for booking professional services. We connect you with skilled service providers to meet all your needs.</p>
+                    <div class="social-icons mt-4">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5 class="footer-title">Quick Links</h5>
+                    <div class="footer-links">
+                        <a href="{% url 'core:index' %}">Home</a>
+                        <a href="{% url 'core:service-list' %}">Services</a>
+                        <a href="{% url 'core:vendor-list' %}">Vendors</a>
+                        <a href="{% url 'core:about' %}">About Us</a>
+                        <a href="{% url 'core:contact' %}">Contact Us</a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5 class="footer-title">Contact Info</h5>
+                    <div class="footer-links">
+                        <a href="#"><i class="fas fa-map-marker-alt me-2"></i> 123 Main Street, New York, NY 10001</a>
+                        <a href="tel:+13016060756"><i class="fas fa-phone-alt me-2"></i> +1 (301) 606-0756</a>
+                        <a href="mailto:inquiriesesa@gmail.com"><i class="fas fa-envelope me-2"></i> inquiriesesa@gmail.com</a>
+                        <a href="#"><i class="fas fa-clock me-2"></i> Mon-Fri: 9:00 AM - 5:00 PM</a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5 class="footer-title">Newsletter</h5>
+                    <p>Subscribe to our newsletter to receive updates and special offers.</p>
+                    <form action="{% url 'core:subscribe' %}" method="post" class="subscribe-form mt-4">
+                        {% csrf_token %}
+                        <div class="input-group">
+                            <input type="email" name="email" class="form-control" placeholder="Your Email" required>
+                            <button class="btn btn-primary" type="submit">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright text-center">
+                <p>&copy; {% now "Y" %} ASAP Services. All Rights Reserved.</p>
+            </div>
+        </div>
     </footer>
 
     <!-- Scripts -->
