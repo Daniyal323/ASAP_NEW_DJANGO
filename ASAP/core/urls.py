@@ -40,4 +40,5 @@ urlpatterns = [
     path('contact/', contact_view, name="contact"),
 
     path('become-seller/', views.become_seller, name='become_seller'),
+    path('subscribe/', views.subscribe, name='subscribe'),
 ]
