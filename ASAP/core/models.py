@@ -223,3 +223,12 @@ class Seller(models.Model):
 
     def __str__(self):
         return self.business_name
+
+############################### Subscriber ####################################
+
+class Subscriber(models.Model):
+    email = models.EmailField(unique=True)
+    date_added = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return self.email
